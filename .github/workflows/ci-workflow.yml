@@ -31,3 +31,16 @@ jobs:
         run: npm run build
       - name: Run npm tests
         run: npm t
+  notify-slack:
+    name: Notify slack of result
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: [build,build-npm]
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: '#devops-apprenticeship'
+          SLACK_USERNAME: github actions
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON_EMOJI: ':eyes:'
