@@ -1,0 +1,13 @@
+name: Continuous Integration
+on: [push]
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - run: dotnet build
