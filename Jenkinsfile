@@ -24,7 +24,8 @@ pipeline {
                     sh "npm install"
                     sh "npm run lint"
                     sh "npm run build"
-                    sh "npm t"
+                    sh "npm run test-with-coverage"
+                    publishCoverage adapters: [istanbulCoberturaAdapter('coverage/cobertura-coverage.xml')]
                 }
             }
         }
