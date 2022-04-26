@@ -31,10 +31,9 @@ jobs:
         run: npm run build
       - name: Run npm tests
         run: npm t
-  notify-slack:
+  notify-slack-succeed:
     name: Notify slack of result
     runs-on: ubuntu-latest
-    if: ${{ always() }}
     needs: [build,build-npm]
     steps:
       - uses: rtCamp/action-slack-notify@v2
@@ -42,5 +41,20 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: '#devops-apprenticeship'
           SLACK_USERNAME: github actions
-          SLACK_COLOR: ${{ job.status }}
+          SLACK_COLOR: '#23b828' #green
+          SLACK_TITLE: ':large_green_circle: Build succeeded for ${{ github.ref }}'
+          SLACK_ICON_EMOJI: ':eyes:'
+  notify-slack-failure:
+    name: Notify slack of result
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    needs: [build,build-npm]
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: '#devops-apprenticeship'
+          SLACK_USERNAME: github actions
+          SLACK_COLOR: '#d12121' #red
+          SLACK_TITLE: ':red_circle: Build failed for ${{ github.ref }}'
           SLACK_ICON_EMOJI: ':eyes:'
