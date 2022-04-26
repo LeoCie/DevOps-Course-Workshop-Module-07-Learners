@@ -25,6 +25,8 @@ jobs:
           node-version: '16'
       - name: Run npm install
         run: npm install
+      - name: Run npm linter
+        run: npm run lint
       - name: Run npm build
         run: npm run build
       - name: Run npm tests
