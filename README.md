@@ -1,5 +1,7 @@
 # Workshop Module 07
 
+Current build status: ![example branch parameter](https://github.com/LeoCie/DevOps-Course-Workshop-Module-07-Learners/actions/workflows/ci-workflow.yml/badge.svg?branch=CI)
+
 This repository is for learners on Corndel's DevOps apprenticeship.
 
 Before the workshop you should complete all the set-up instructions in [before_you_start.md](./before_you_start.md).
