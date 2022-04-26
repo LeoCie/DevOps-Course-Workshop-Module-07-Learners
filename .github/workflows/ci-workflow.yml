@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   build:
-    name: Build and test
+    name: Build and test dotnet
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -11,3 +11,4 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - run: dotnet build
+    - run: dotnet test
