@@ -38,7 +38,7 @@ namespace DotnetTemplate.Web.Tests.Controllers
             // Then
             var expectedModel = new SecondPageViewModel();
             result.Should().BeViewResult()
-                .Model.Should().BeEquivalentTo(expectedModel);
+                .Model.Should().NotBeEquivalentTo(expectedModel);
         }
     }
 }
